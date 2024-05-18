@@ -4,7 +4,7 @@ import { connectDB } from './db/connect';
 import { notFound } from './middleware/not-found';
 import { errorHandlerMiddleware } from './middleware/error-handler';
 import authRoutes from './routes/auth';
-import protectedRoutes from './routes/protected';
+import mainRoutes from './routes';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,7 +15,7 @@ app
   .use(express.urlencoded({ extended: true }))
   .use(express.static('public'))
   .use('/api/v1/auth', authRoutes)
-  .use('/api/v1/', protectedRoutes)
+  .use('/api/v1/', mainRoutes)
   .use(notFound)
   .use(errorHandlerMiddleware);
 

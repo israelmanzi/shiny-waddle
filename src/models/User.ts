@@ -8,34 +8,32 @@ interface IUser extends Document {
   date: Date;
 }
 
-const UserSchema: Schema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    min: 3,
-    max: 255,
+const UserSchema: Schema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      min: 3,
+      max: 255,
+    },
+    email: {
+      type: String,
+      required: true,
+      max: 255,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+      max: 255,
+    },
+    password: {
+      type: String,
+      required: true,
+      max: 1024,
+      min: 6,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    max: 255,
-  },
-  phoneNumber: {
-    type: String,
-    required: true,
-    max: 255,
-  },
-  password: {
-    type: String,
-    required: true,
-    max: 1024,
-    min: 6,
-  },
-  date: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+  { timestamps: true }
+);
 
-const User = model<IUser>('User', UserSchema);
-export default User;
+export default model<IUser>('User', UserSchema);
